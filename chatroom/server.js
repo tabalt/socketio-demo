@@ -18,6 +18,36 @@ io.on('connection', function (socket) {
         io.sockets.emit('online', {users: users, user: data.user});
     });
 
+    //有人发话
+    socket.on('say', function (data) {
+        if (data.to == 'all') {
+            //向其他所有用户广播该用户发话信息
+            socket.broadcast.emit('say', data);
+        } else {
+            //向特定用户发送该用户发话信息
+            //clients 为存储所有连接对象的数组
+            var clients = io.sockets.clients();
+            //遍历找到该用户
+            clients.forEach(function (client) {
+                if (client.name == data.to) {
+                    //触发该用户客户端的 say 事件
+                    client.emit('say', data);
+                }
+            });
+        }
+    });
+
+    //有人下线
+    socket.on('disconnect', function() {
+        //若 users 对象中保存了该用户名
+        if (users[socket.name]) {
+            //从 users 对象中删除该用户名
+            delete users[socket.name];
+            //向其他所有用户广播该用户下线信息
+            socket.broadcast.emit('offline', {users: users, user: socket.name});
+        }
+    });
+
 });
 
 
