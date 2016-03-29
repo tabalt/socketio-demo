@@ -1,0 +1,30 @@
+extends layout
+
+block header
+    link(rel='stylesheet', href='/static/css/chat.css')
+    script(type='text/javascript' src='/static/js/jquery.min.js')
+    script(type='text/javascript' src='/static/js/jquery.cookie.js')
+    script(type='text/javascript' src='/socket.io/socket.io.js')
+    script(type='text/javascript' src='/static/js/chat.js')
+
+block content
+    div(id='contain')
+        div(id='content')
+            div(id='content_show')
+                div(id='contents')
+            div(id='content_saying')
+                div(id='toolbar')
+                div(id='input_content' contenteditable='true')
+                div(id='sayingto') 你好 
+                    span(id='from') 
+                    span ，你正在对 
+                    span(id='to') 
+                    span 说 
+                div(id='say') 发送
+        div(id='users_online')
+            div(id='usersbar')
+                div(id='user_label') 在线用户
+                div(id='users_list')
+                    ul(id='list')
+
+        

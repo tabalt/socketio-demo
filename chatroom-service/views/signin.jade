@@ -1,0 +1,19 @@
+extends layout
+
+block header
+    link(rel='stylesheet', href='/static/css/signin.css')
+
+block content
+    div(id='content')
+        form(style='margin-top:70px;' method='post' action='')
+            div(class='form_line')
+                div(class='form_label') 昵称：
+                input(type='text' name='name')
+            
+            div(class='form_line')
+                div(class='form_label')
+                button(class='button gray' type='submit') 登录
+                button(class='button gray' type='reset') 取消
+
+
+        

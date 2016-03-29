@@ -1,0 +1,16 @@
+extends ../layout
+
+block header
+    script(type='text/javascript' src='/static/js/jquery.min.js')
+
+block content
+    div(id='contain')
+        div(style='padding: 50px;')
+            ul
+              - for (var i = 0; i < infoList.length; ++i) {
+                li 
+                    a(href='/chatroom/detail?id=#{infoList[i].id}') #{infoList[i].name}
+              - }
+
+
+        
